@@ -4,12 +4,16 @@ section .text
 %define WRITE 0x2000004
 %define READ  0x2000003
 
-_main:
+_print:
   mov rax, WRITE
   mov rdi, 1
+  syscall
+  ret
+
+_main:
   mov rsi, question
   mov rdx, question.len
-  syscall
+  call _print
 
   mov rax, READ
   mov rdi, 0
@@ -17,17 +21,13 @@ _main:
   mov rdx, 255
   syscall
 
-  mov rax, WRITE
-  mov rdi, 1
   mov rsi, response
   mov rdx, response.len
-  syscall
+  call _print
 
-  mov rax, WRITE
-  mov rdi, 1
   mov rsi, name
   mov rdx, 255
-  syscall
+  call _print
 
   call _exit
 
