@@ -4,9 +4,9 @@
 global _main
 section .text
 
-%define WRITE 0x2000004
-%define READ  0x2000003
-%define EXIT  0x2000001
+%define WRITE  0x2000004
+%define READ   0x2000003
+%define EXIT   0x2000001
 
 _print:
   mov rax, WRITE
@@ -34,7 +34,7 @@ _main:
   call _print
 
   mov rsi, name
-  mov rdx, 255
+  mov rdx, 256
   call _print
 
   call _exit
