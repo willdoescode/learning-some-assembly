@@ -6,6 +6,7 @@ section .text
 
 %define WRITE 0x2000004
 %define READ  0x2000003
+%define EXIT  0x2000001
 
 _print:
   mov rax, WRITE
@@ -39,12 +40,12 @@ _main:
   call _exit
 
 _exit:
-  mov rax, 0x2000001
+  mov rax, EXIT
   xor rdi, rdi ; can also do `mov rdi, 0`, if want a 1 exit code then `mov rdi, 1`
   syscall
 
 section .data
-question: db "What is your name?", 10
+question: db "What is your name?", 10, "> "
 question.len: equ $ - question
 response: db "Hello "
 response.len: equ $ - response
