@@ -1,20 +1,49 @@
 global _main
 section .text
 
+%define WRITE 0x2000004
+%define READ  0x2000003
+
 _main:
-  mov rax, 0x2000004
+  mov rax, WRITE
   mov rdi, 1
-  mov rsi, str
-  mov rdx, str.len
+  mov rsi, question
+  mov rdx, question.len
   syscall
 
+  mov rax, READ
+  mov rdi, 0
+  mov rsi, name
+  mov rdx, 255
+  syscall
+
+  mov rax, WRITE
+  mov rdi, 1
+  mov rsi, response
+  mov rdx, response.len
+  syscall
+
+  mov rax, WRITE
+  mov rdi, 1
+  mov rsi, name
+  mov rdx, 255
+  syscall
+
+  call _exit
+
+_exit:
   mov rax, 0x2000001
   xor rdi, rdi ; can also do `mov rdi, 0`, if want a 1 exit code then `mov rdi, 1`
   syscall
 
 section .data
-str: db "Hello, World!", 10
-.len: equ $ - str
+question: db "What is your name?", 10
+question.len: equ $ - question
+response: db "Hello "
+response.len: equ $ - response
+
+section .bss
+name resb 255
 
 ; syscall value determined by rax register
 ; rax is the syscall number (on macos syscalls begin with 20 million or 0x2000000)
