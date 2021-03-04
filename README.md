@@ -1,6 +1,15 @@
 Learning some x86_64 asm for macos (this is macos syscalls so not compatible with linux)
 
 Running
+
+Name.asm
+
 ```shell
-nasm -f macho64 name.asm && gcc name.o && ./a.out
+make name
+```
+
+Loop.asm
+
+```shell
+make loop
 ```
