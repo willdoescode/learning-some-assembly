@@ -1,3 +1,6 @@
+; Syscall docs I used: https://opensource.apple.com/source/xnu/xnu-1228.0.2/bsd/kern/syscalls.c.auto.html
+; https://github.com/apple/darwin-xnu/blob/main/bsd/kern/syscalls.master
+
 global _main
 section .text
 
@@ -48,6 +51,10 @@ response.len: equ $ - response
 
 section .bss
 name resb 255
+
+; Some understanding ive gained
+
+; rdi rsi rdx rcx r8 r9 are used instead of stack on machos
 
 ; syscall value determined by rax register
 ; rax is the syscall number (on macos syscalls begin with 20 million or 0x2000000)
