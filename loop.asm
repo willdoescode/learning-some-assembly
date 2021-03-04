@@ -22,7 +22,7 @@ _main:
 
 start_loop:
   cmp r8, r9
-  jle exit
+  jle exit_loop
 
   mov rsi, x
   mov rdx, x.len
@@ -31,7 +31,17 @@ start_loop:
   inc r9
   jmp start_loop
 
+exit_loop:
+  mov rsi, second
+  mov rdx, second.len
+  call print
+
+  call exit
+
 section .data
-x: db "Hello world", ENDL
+x: db "Inside of the loop", ENDL
 .len: equ $ - x
 numberFormat: db '%d', 10, 0
+
+second: db "Out of the loop now", ENDL
+.len: equ $ - second
