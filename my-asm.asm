@@ -10,16 +10,20 @@ _print:
   syscall
   ret
 
+_read:
+  mov rax, READ
+  mov rdi, 0
+  mov rdx, 256
+  syscall
+  ret
+
 _main:
   mov rsi, question
   mov rdx, question.len
   call _print
 
-  mov rax, READ
-  mov rdi, 0
   mov rsi, name
-  mov rdx, 255
-  syscall
+  call _read
 
   mov rsi, response
   mov rdx, response.len
