@@ -15,3 +15,9 @@ buildname: name.asm
 
 buildloop:
 	nasm -f macho64 -o loop.o loop.asm && ld loop.o -o a.out -macosx_version_min 11.0 -L /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -lSystem -no_pie
+
+buildtriangle:
+	nasm -f macho64 -o triangle.o triangle.asm && ld triangle.o -o a.out -macosx_version_min 11.0 -L /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -lSystem -no_pie
+
+buildsquare:
+	nasm -f macho64 -o square.o square.asm && ld square.o -o a.out -macosx_version_min 11.0 -L /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -lSystem -no_pie
